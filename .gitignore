@@ -1,0 +1,48 @@
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# environments
+.env
+.env.*
+*.local
+
+# data / weights / logs
+data/
+logs/
+*.log
+*.gguf
+*.safetensors
+*.onnx
+*.bin
+*.pt
+*.h5
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# archives / installs
+*.dmg
+*.tar.gz
+*.zip
+node_modules/
+
+# personal
+INSTALL_PACK_*.md
+FORGE_*.md
+AUTONOMY_*.md
+
+# backups / build artifacts
+*.bak
+*.orig
+*.rej
