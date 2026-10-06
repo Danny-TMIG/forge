@@ -170,4 +170,22 @@ def index_stats():
     try: rprint(m.call("index-hub", "stats", {}))
     finally: m.close()
 
-if __name__ == "__main__": app()
+@app.command()
+def doctor():
+    """Pre-flight invariant checks (.venv isolation, mesh locks)."""
+    from forge.dendritic import DendriticDiamondEngine, InvariantViolation
+    rprint("[cyan]Forge Doctor[/cyan] — pre-flight invariant inspection...")
+    eng = DendriticDiamondEngine()
+    try:
+        eng.diamond_1_ingress_gate(b"doctor-probe")
+        rprint("  [green]✔[/green] INVER-03: .venv isolation verified.")
+        for name, port in [("index-hub", 8095), ("model-hub", 8080), ("verify-hub", 8090)]:
+            eng.diamond_2_mesh_lock_gate(port, name)
+        rprint("  [green]✔[/green] INVER-02/04: mesh ports + atomic locks secured.")
+    except InvariantViolation as e:
+        rprint(f"[red]INVARIANT BREACH: {e}[/red]")
+        raise typer.Exit(code=1)
+
+
+if __name__ == "__main__":
+    app()

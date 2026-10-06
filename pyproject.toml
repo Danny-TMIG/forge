@@ -1,12 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "forge"
-version = "0.0.1"
+version = "0.1.0"
+description = "Decentralized, autonomous infrastructure fabric with zero-trust architectural invariants"
 requires-python = ">=3.11"
-dependencies = ["fastapi>=0.115","uvicorn[standard]>=0.30","httpx>=0.27","zeroconf>=0.132","typer>=0.12","rich>=13.7"]
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "zeroconf>=0.130.0",
+    "mlx>=0.0.0",
+]
+
 [project.scripts]
 forge = "forge.cli:app"
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-[tool.hatch.build.targets.wheel]
-packages = ["forge"]
+
+[tool.setuptools]
+packages = ["forge", "forge.hubs", "trust"]
